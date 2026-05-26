@@ -1,8 +1,6 @@
-"""
-Snake game logic — no graphics, pure Python.
+"""Snake game logic — no graphics, pure Python.
 This module handles all game state: snake movement,
-food, collision detection, and scoring.
-"""
+food, collision detection, and scoring."""
 
 
 class Snake:
@@ -11,7 +9,9 @@ class Snake:
         self.reset()
 
     def reset(self):
+
         """Reset snake to starting state."""
+        
         center = self.grid_size // 2
         self.body = [
             (center,     center),
@@ -25,16 +25,18 @@ class Snake:
         self.level      = 1
 
     def change_direction(self, new_dir):
+
         """Change direction — prevent reversing into itself."""
+
         opposite = (-new_dir[0], -new_dir[1])
         if opposite != self.direction:
             self.next_dir = new_dir
 
     def step(self, food_pos):
-        """
-        Move the snake one step forward.
-        Returns True if food was eaten, False otherwise.
-        """
+
+        """Move the snake one step forward.
+        Returns True if food was eaten, False otherwise."""
+
         self.direction = self.next_dir
         head_x, head_y = self.body[0]
         dir_x,  dir_y  = self.direction

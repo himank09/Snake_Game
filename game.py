@@ -2,7 +2,8 @@ import pygame
 from snake_game import Snake
 from food import Food
 
-# --- Configuration & Colors ---
+# Configuration & Colors
+
 CELL_SIZE = 25  # How many pixels wide/tall each grid square is
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
@@ -17,7 +18,7 @@ class Game:
         self.food.place(self.snake.body)
         self.running = True
 
-        # --- Pygame Setup ---
+        # Pygame Setup
         pygame.init()
         # The window size is the grid size multiplied by the pixel size of each cell
         window_size = self.grid_size * CELL_SIZE 
@@ -53,7 +54,7 @@ class Game:
         for (x, y) in self.snake.body:
             pygame.draw.rect(self.screen, GREEN, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
 
-        # --- NEW: Draw the Score ---
+        # NEW: Draw the Score
         font = pygame.font.Font(None, 36)
         score_text = font.render(f"Score: {self.snake.score}", True, (255, 255, 255)) # White text
         self.screen.blit(score_text, (10, 10)) # Draw it at coordinates (10, 10)
@@ -61,6 +62,7 @@ class Game:
         pygame.display.flip() # Swap the display buffers to show what we drew   
         
     def run(self):
+
         """The main game loop."""
         # Setup a font for the Game Over text
         font = pygame.font.Font(None, 30)
@@ -73,11 +75,11 @@ class Game:
                     return # Exit the loop and close the game
                 
                 if event.type == pygame.KEYDOWN:
-                    # --- NEW: Restart Game ---
+                    # NEW: Restart Game
                     if event.key == pygame.K_r and not self.running:
                         self.restart()
 
-                    # --- NEW: Use your built-in change_direction method! ---
+                    # NEW: Use your built-in change_direction method!
                     if self.running:
                         if event.key == pygame.K_UP:
                             self.snake.change_direction((0, -1))
@@ -95,7 +97,7 @@ class Game:
             # 3. Render Graphics
             self.draw()
 
-            # --- NEW: Game Over Screen ---
+            # NEW: Game Over Screen
             if not self.running:
                 text = font.render("GAME OVER! Press 'R' to Restart", True, (255, 255, 255))
                 # Center the text on the screen

@@ -1,6 +1,4 @@
-"""
-Unit tests for snake game logic.
-"""
+"""Unit tests for snake game logic."""
 
 import unittest
 from snake_game import Snake
